@@ -1,0 +1,197 @@
+---
+import { LIMITES, type Motivo } from '../lib/formulario';
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+  motive?: Motivo;
+}
+
+const { t, motive } = Astro.props;
+const f = t.contact.form;
+const field = 'mt-2 block w-full rounded-xl border border-line-strong bg-paper px-4 py-3 text-base text-ink placeholder:text-muted transition-colors focus:border-pass focus:outline-none aria-invalid:border-red-500';
+const label = 'block text-sm font-semibold';
+const error = 'field-error mt-1.5 hidden text-sm text-red-600 dark:text-red-400';
+// Lo que el script necesita y no está en el HTML: asuntos, mensaje de falla y página de origen.
+const config = { subject: f.subject, sendError: f.errors.send, sending: f.sending, page: Astro.url.pathname };
+---
+
+<div class="card p-6 sm:p-8">
+  <form class="contact-form space-y-5" novalidate data-config={JSON.stringify(config)}>
+    <div class="grid gap-5 sm:grid-cols-2">
+      <div>
+        <label for="cf-name" class={label}>{f.name}</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" maxlength={LIMITES.nombre} required aria-describedby="cf-name-error" class={field} />
+        <p id="cf-name-error" class={error}>{f.errors.name}</p>
+      </div>
+      <div>
+        <label for="cf-company" class={label}>{f.company} <span class="font-normal text-muted">({f.optional})</span></label>
+        <input id="cf-company" name="company" type="text" autocomplete="organization" maxlength={LIMITES.empresa} class={field} />
+      </div>
+    </div>
+
+    <div>
+      <label for="cf-email" class={label}>{f.email}</label>
+      <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength={LIMITES.correo} required aria-describedby="cf-email-error" class={field} />
+      <p id="cf-email-error" class={error}>{f.errors.email}</p>
+    </div>
+
+    <fieldset aria-describedby="cf-motive-error">
+      <legend class={label}>{f.motive}</legend>
+      <div class="mt-2 grid gap-2 sm:grid-cols-2">
+        {
+          (['project', 'job'] as const).map((value) => (
+            <label class="motive flex cursor-pointer items-center gap-3 rounded-xl border border-line-strong bg-paper px-4 py-3 transition-colors">
+              <input type="radio" name="motive" value={value} checked={motive === value} class="size-4 accent-[var(--pass)]" />
+              <span>{f.motives[value]}</span>
+            </label>
+          ))
+        }
+      </div>
+      <p id="cf-motive-error" class={error}>{f.errors.motive}</p>
+    </fieldset>
+
+    <div>
+      <label for="cf-message" class={label}>{f.message}</label>
+      <textarea id="cf-message" name="message" rows="5" maxlength={LIMITES.mensajeMax} required aria-describedby="cf-message-error" placeholder={f.messagePlaceholder} class={`${field} resize-y`}></textarea>
+      <p id="cf-message-error" class={error}>{f.errors.message}</p>
+    </div>
+
+    <!-- Trampa para bots: una persona no la ve ni la marca. -->
+    <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
+
+    <p class="send-error hidden rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-700 dark:text-red-300" role="alert" tabindex="-1"></p>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
+      <p class="text-sm text-muted">{f.privacy}</p>
+      <button type="submit" class="btn btn-primary min-w-40 disabled:cursor-wait disabled:opacity-70">{f.send}</button>
+    </div>
+  </form>
+
+  <div class="contact-success hidden py-6 text-center" role="status" tabindex="-1">
+    <span class="mx-auto flex size-12 items-center justify-center rounded-full bg-pass-soft text-pass-ink">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 12 12" fill="none">
+        <path d="M2.5 6.2 5 8.5l4.5-5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+      </svg>
+    </span>
+    <p class="mt-4 text-2xl font-bold tracking-[-0.02em]">{f.success.title}</p>
+    <p class="mt-2 text-ink-soft">{f.success.text}</p>
+    <button type="button" class="contact-again btn btn-ghost mt-6">{f.success.again}</button>
+  </div>
+</div>
+
+<script>
+  import { WEB3FORMS_ACCESS_KEY, WEB3FORMS_ENDPOINT, validar, type Datos } from '../lib/formulario';
+
+  for (const form of document.querySelectorAll<HTMLFormElement>('form.contact-form')) {
+    const config = JSON.parse(form.dataset.config ?? '{}');
+    const card = form.parentElement!;
+    const success = card.querySelector<HTMLElement>('.contact-success')!;
+    const sendError = form.querySelector<HTMLElement>('.send-error')!;
+    const button = form.querySelector<HTMLButtonElement>('button[type=submit]')!;
+    const buttonLabel = button.textContent;
+
+    const read = (): Datos => {
+      const data = new FormData(form);
+      const get = (k: string) => String(data.get(k) ?? '');
+      return { name: get('name'), company: get('company'), email: get('email'), motive: get('motive'), message: get('message') };
+    };
+
+    const showErrors = (fields: string[]) => {
+      for (const name of ['name', 'email', 'motive', 'message']) {
+        const invalid = fields.includes(name);
+        form.querySelector(`#cf-${name}-error`)?.classList.toggle('hidden', !invalid);
+        for (const input of form.querySelectorAll<HTMLElement>(`[name=${name}]`)) {
+          if (invalid) input.setAttribute('aria-invalid', 'true');
+          else input.removeAttribute('aria-invalid');
+        }
+      }
+    };
+
+    // Una vez que se intentó enviar, los errores se corrigen mientras la persona escribe.
+    let tried = false;
+    form.addEventListener('input', () => {
+      if (tried) showErrors(validar(read()));
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      tried = true;
+      sendError.classList.add('hidden');
+
+      const datos = read();
+      const fields = validar(datos);
+      showErrors(fields);
+      if (fields.length) {
+        form.querySelector<HTMLElement>(`[name=${fields[0]}]`)?.focus();
+        return;
+      }
+
+      const done = () => {
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        success.focus();
+      };
+
+      // Un bot marcó la trampa: se le muestra éxito sin enviar nada.
+      if ((form.elements.namedItem('botcheck') as HTMLInputElement).checked) return done();
+
+      button.disabled = true;
+      button.textContent = config.sending;
+      const timeout = new AbortController();
+      const timer = setTimeout(() => timeout.abort(), 15000);
+
+      try {
+        const motive = datos.motive as 'project' | 'job';
+        const res = await fetch(WEB3FORMS_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          signal: timeout.signal,
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            subject: `${config.subject[motive]} · ${datos.name.trim()}`,
+            from_name: 'Web de Bautista Tolloni',
+            name: datos.name.trim(),
+            email: datos.email.trim(),
+            company: datos.company.trim(),
+            motive: motive === 'job' ? 'Vacante' : 'Proyecto',
+            message: datos.message.trim(),
+            page: config.page,
+          }),
+        });
+        const body = await res.json().catch(() => null);
+        if (!res.ok || !body?.success) throw new Error(body?.message ?? `HTTP ${res.status}`);
+        form.reset();
+        tried = false;
+        done();
+      } catch (err) {
+        console.error('Formulario de contacto:', err);
+        sendError.textContent = config.sendError;
+        sendError.classList.remove('hidden');
+        sendError.focus();
+      } finally {
+        clearTimeout(timer);
+        button.disabled = false;
+        button.textContent = buttonLabel;
+      }
+    });
+
+    card.querySelector('.contact-again')?.addEventListener('click', () => {
+      success.classList.add('hidden');
+      form.classList.remove('hidden');
+      form.querySelector<HTMLElement>('[name=name]')?.focus();
+    });
+  }
+</script>
+
+<style>
+  .motive:has(input:checked) {
+    border-color: var(--pass);
+    background: var(--pass-soft);
+  }
+
+  .motive:has(input:focus-visible) {
+    outline: 2px solid var(--pass);
+    outline-offset: 2px;
+  }
+</style>
