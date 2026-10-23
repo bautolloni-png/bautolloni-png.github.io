@@ -1,0 +1,289 @@
+<!doctype html>
+<!-- Plantilla de la imagen para compartir (1200×630). El idioma sale del hash: #es o #en. Se genera con scripts/og/generar.sh. -->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'Inter Tight';
+        src: url('inter-tight.woff2') format('woff2');
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: 'JetBrains Mono';
+        src: url('jetbrains-mono.woff2') format('woff2');
+        font-weight: 400 500;
+      }
+
+      :root {
+        --paper: #f6f5f1;
+        --surface: #ffffff;
+        --ink: #0e1116;
+        --ink-soft: #3a414c;
+        --muted: #5f6670;
+        --line: rgb(14 17 22 / 0.1);
+        --pass: #157a3c;
+        --pass-soft: #e2f3e7;
+        --pass-ink: #0d5a2b;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 430px;
+        gap: 56px;
+        align-items: center;
+        padding: 64px 72px;
+        background-color: var(--paper);
+        background-image: radial-gradient(rgb(14 17 22 / 0.09) 1.2px, transparent 1.2px);
+        background-size: 24px 24px;
+        color: var(--ink);
+        font-family: 'Inter Tight', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      .eyebrow {
+        font-size: 17px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      h1 {
+        margin-top: 26px;
+        font-size: 82px;
+        line-height: 1.02;
+        font-weight: 700;
+        letter-spacing: -0.045em;
+      }
+
+      .accent {
+        color: var(--pass);
+      }
+
+      .lead {
+        margin-top: 26px;
+        max-width: 560px;
+        font-size: 27px;
+        line-height: 1.35;
+        color: var(--ink-soft);
+      }
+
+      .sign {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-top: 44px;
+      }
+
+      .mark {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 56px;
+        height: 56px;
+        border-radius: 14px;
+        background: var(--ink);
+        color: var(--paper);
+        font-size: 23px;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+      }
+
+      .mark::after {
+        content: '';
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #4ade80;
+      }
+
+      .name {
+        font-size: 26px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+
+      .url {
+        margin-top: 2px;
+        font-size: 17px;
+        color: var(--muted);
+      }
+
+      .card {
+        padding: 30px 30px 28px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: var(--surface);
+        box-shadow: 0 30px 60px -20px rgb(14 17 22 / 0.18);
+      }
+
+      .card-label {
+        font-size: 14px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      ol {
+        position: relative;
+        margin-top: 22px;
+        padding: 0;
+        list-style: none;
+      }
+
+      ol::before {
+        content: '';
+        position: absolute;
+        top: 26px;
+        bottom: 26px;
+        left: 13px;
+        width: 2px;
+        background: linear-gradient(var(--pass), var(--pass-soft));
+      }
+
+      li {
+        position: relative;
+        display: grid;
+        grid-template-columns: 28px 1fr auto;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 0;
+      }
+
+      .dot {
+        justify-self: center;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: var(--pass);
+        box-shadow: 0 0 0 5px var(--surface);
+      }
+
+      .row-title {
+        font-size: 21px;
+        font-weight: 600;
+      }
+
+      .row-detail {
+        margin-top: 2px;
+        font-size: 13.5px;
+        color: var(--muted);
+      }
+
+      .status {
+        font-size: 14px;
+        color: var(--pass-ink);
+      }
+
+      .checks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid var(--line);
+      }
+
+      .check {
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: var(--pass-soft);
+        color: var(--pass-ink);
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p class="eyebrow mono" data-t="eyebrow"></p>
+      <h1 data-t="title"></h1>
+      <p class="lead" data-t="lead"></p>
+      <div class="sign">
+        <span class="mark">BT</span>
+        <div>
+          <p class="name">Bautista Tolloni</p>
+          <p class="url mono">bautolloni-png.github.io</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="card-label mono" data-t="cardLabel"></p>
+      <ol data-t="rows"></ol>
+      <div class="checks mono">
+        <span class="check">✓ SPF pass</span>
+        <span class="check">✓ DKIM pass</span>
+        <span class="check">✓ DMARC pass</span>
+      </div>
+    </div>
+
+    <script>
+      const textos = {
+        es: {
+          eyebrow: 'CRM · Automatización · Email B2B',
+          title: 'Leads que no se <span class="accent">pierden.</span>',
+          lead: 'Implemento CRM, automatizaciones y la infraestructura de email para que cada correo llegue a la bandeja de entrada.',
+          cardLabel: 'El recorrido de un lead',
+          rows: [
+            ['Formulario web', 'lead.nuevo · origen: Meta Ads', 'recibido'],
+            ['CRM', 'etapa: Nuevo → Contactado', 'asignado'],
+            ['Secuencia', 'paso 2 de 3 · asunto B', 'enviado'],
+            ['Bandeja de entrada', 'dominio autenticado', 'entregado'],
+          ],
+        },
+        en: {
+          eyebrow: 'CRM · Automation · B2B Email',
+          title: 'Leads that don’t get <span class="accent">lost.</span>',
+          lead: 'I implement CRMs, automations and email infrastructure so every email lands in the inbox.',
+          cardLabel: 'A lead’s journey',
+          rows: [
+            ['Web form', 'lead.new · source: Meta Ads', 'received'],
+            ['CRM', 'stage: New → Contacted', 'assigned'],
+            ['Sequence', 'step 2 of 3 · subject B', 'sent'],
+            ['Inbox', 'authenticated domain', 'delivered'],
+          ],
+        },
+      };
+
+      const t = textos[location.hash.slice(1)] ?? textos.es;
+      document.documentElement.lang = location.hash.slice(1) || 'es';
+      for (const el of document.querySelectorAll('[data-t]')) {
+        const key = el.dataset.t;
+        if (key === 'rows') {
+          el.innerHTML = t.rows
+            .map(
+              ([title, detail, status]) => `
+              <li>
+                <span class="dot"></span>
+                <span><span class="row-title" style="display:block">${title}</span><span class="row-detail mono" style="display:block">${detail}</span></span>
+                <span class="status mono">${status}</span>
+              </li>`,
+            )
+            .join('');
+        } else {
+          el.innerHTML = t[key];
+        }
+      }
+    </script>
+  </body>
+</html>
