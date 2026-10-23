@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bautolloni-png.github.io/sitemap-index.xml

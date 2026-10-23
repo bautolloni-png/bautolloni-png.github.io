@@ -1,0 +1,50 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+}
+
+const { t } = Astro.props;
+const { stack } = t;
+
+const marker: Record<string, string> = {
+  pass: 'bg-pass',
+  muted: 'bg-muted',
+  outline: 'border-2 border-muted',
+};
+---
+
+<section id={t.ids.stack} class="border-b border-line py-20 md:py-28">
+  <div class="container-page">
+    <SectionHeading eyebrow={stack.eyebrow} title={stack.title} intro={stack.intro} />
+
+    <div class="mt-12 grid gap-4 lg:grid-cols-[2fr_1fr]">
+      {
+        stack.levels.map((level, i) => (
+          <div class:list={['card p-6 sm:p-8', i === 0 && 'lg:row-span-2']}>
+            <h3 class="flex items-center gap-2.5 text-xl font-bold">
+              <span class:list={['inline-block size-2.5 rounded-full', marker[level.tone]]} aria-hidden="true" />
+              {level.name}
+            </h3>
+            {level.note && <p class="mt-1 text-sm text-muted">{level.note}</p>}
+
+            <div class:list={['mt-6 grid gap-6', i === 0 && 'sm:grid-cols-2']}>
+              {level.groups.map((g) => (
+                <div>
+                  {g.name && <p class="eyebrow mb-3">{g.name}</p>}
+                  <ul class="space-y-1.5 text-ink-soft">
+                    {g.tools.map((tool) => (
+                      <li>{tool}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

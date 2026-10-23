@@ -1,0 +1,36 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+  title?: string;
+  text?: string;
+  emailSubject?: string;
+}
+
+const { t } = Astro.props;
+const { contact } = t;
+const title = Astro.props.title ?? contact.title;
+const text = Astro.props.text ?? contact.text;
+const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(Astro.props.emailSubject ?? contact.emailSubject)}`;
+---
+
+<!-- El formulario que entra a un CRM con respuesta automática llega en el próximo paso. -->
+<section id={t.ids.contact} class="dot-grid relative py-24 md:py-32">
+  <div class="container-page">
+    <SectionHeading eyebrow={contact.eyebrow} title={title} intro={text} center />
+
+    <div class="mt-10 flex flex-wrap justify-center gap-3">
+      <a href={mailto} class="btn btn-primary">{contact.emailLabel}</a>
+      <a href={contact.linkedin.href} target="_blank" rel="noopener" class="btn btn-ghost bg-surface">{contact.linkedin.label}</a>
+      <a href={t.hero.cv.href} download class="btn btn-ghost bg-surface">{contact.cvLabel}</a>
+    </div>
+
+    <p class="mt-8 text-center font-mono text-xs text-muted">
+      <a href={mailto} class="underline-offset-4 hover:text-ink hover:underline">{contact.email}</a>
+      <span aria-hidden="true"> · </span>
+      {contact.meta}
+    </p>
+  </div>
+</section>

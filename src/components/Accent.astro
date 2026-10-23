@@ -1,0 +1,10 @@
+---
+// Pinta en el color de acento lo que va después del "|".
+interface Props {
+  text: string;
+}
+
+const [before, after = ''] = Astro.props.text.split('|');
+---
+
+{before}{after && <span class="accent">{after}</span>}

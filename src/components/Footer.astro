@@ -1,0 +1,21 @@
+---
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+}
+
+const { t } = Astro.props;
+---
+
+<footer class="border-t border-line py-8">
+  <div class="container-page flex flex-wrap items-center justify-between gap-4 text-sm text-muted">
+    <p>© {new Date().getFullYear()} {t.footer.rights}</p>
+    <ul class="flex flex-wrap gap-5">
+      <li><a href={t.paths.recruiters} class="hover:text-ink">{t.footer.recruiters}</a></li>
+      <li><a href={t.contact.linkedin.href} target="_blank" rel="noopener" class="hover:text-ink">{t.contact.linkedin.label}</a></li>
+      <li><a href={t.footer.portfolio.href} target="_blank" rel="noopener" class="hover:text-ink">{t.footer.portfolio.label}</a></li>
+      <li><a href="https://nesvir.com" target="_blank" rel="noopener" class="hover:text-ink">Nesvir</a></li>
+    </ul>
+  </div>
+</footer>

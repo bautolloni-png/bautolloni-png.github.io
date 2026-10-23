@@ -1,0 +1,86 @@
+---
+import { pathsFor, type Page } from '../i18n';
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+  page?: Page;
+}
+
+const { t, page = 'home' } = Astro.props;
+const home = t.paths.home;
+const otherLang = t.lang === 'es' ? 'en' : 'es';
+const switchHref = pathsFor(page)[otherLang];
+// Desde la home los enlaces son anclas; desde otra página vuelven a la sección de la home.
+const at = (id: string) => (page === 'home' ? `#${id}` : `${home}#${id}`);
+const links = [
+  { label: t.nav.about, href: at(t.ids.about) },
+  { label: t.nav.services, href: at(t.ids.services) },
+  { label: t.nav.cases, href: at(t.ids.cases) },
+  { label: t.nav.experience, href: at(t.ids.experience) },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-line bg-paper/80 backdrop-blur-md">
+  <div class="container-page flex h-16 items-center justify-between gap-4">
+    <a href={home} class="font-bold whitespace-nowrap tracking-[-0.02em]">Bautista Tolloni</a>
+
+    <nav aria-label={t.nav.menu} class="hidden md:block">
+      <ul class="flex items-center gap-1 rounded-full border border-line bg-surface/70 p-1">
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} class="block rounded-full px-3.5 py-1.5 text-sm text-ink-soft transition-colors hover:bg-paper hover:text-ink">
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <a
+        href={switchHref}
+        hreflang={otherLang}
+        aria-label={t.nav.switchAria}
+        class="rounded-full px-2.5 py-1.5 font-mono text-xs text-muted transition-colors hover:text-ink"
+      >
+        {t.nav.switchLabel}
+      </a>
+      <a href={`#${t.ids.contact}`} class="btn btn-primary hidden h-9 px-4 text-sm sm:inline-flex">{t.nav.cta}</a>
+
+      <details class="menu relative md:hidden">
+        <summary class="btn btn-ghost h-9 cursor-pointer list-none px-3 text-sm [&::-webkit-details-marker]:hidden">
+          <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M2 4.5h12M2 8h12M2 11.5h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+          </svg>
+          {t.nav.menu}
+        </summary>
+        <nav aria-label={t.nav.menu} class="card absolute right-0 mt-2 w-56 p-2 shadow-xl shadow-black/5">
+          <ul>
+            {
+              links.map((l) => (
+                <li>
+                  <a href={l.href} class="block rounded-lg px-3 py-2.5 text-ink-soft hover:bg-paper hover:text-ink">
+                    {l.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <a href={`#${t.ids.contact}`} class="btn btn-primary mt-2 w-full">{t.nav.cta}</a>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Cierra el menú del celular al elegir una sección.
+  for (const menu of document.querySelectorAll<HTMLDetailsElement>('details.menu')) {
+    menu.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).closest('a')) menu.open = false;
+    });
+  }
+</script>

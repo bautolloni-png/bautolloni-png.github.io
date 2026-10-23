@@ -1,0 +1,266 @@
+---
+// Elemento firma: un lead que recorre formulario → CRM → secuencia → bandeja de entrada.
+import type { Content } from '../i18n/es';
+
+interface Props {
+  flow: Content['hero']['flow'];
+}
+
+const { flow } = Astro.props;
+---
+
+<figure class="card relative overflow-hidden p-5 shadow-2xl shadow-black/5 sm:p-6" aria-label={flow.label}>
+  <figcaption class="mb-5 flex items-center justify-between">
+    <span class="eyebrow">{flow.label}</span>
+    <span class="rounded-full border border-line px-2 py-0.5 font-mono text-[0.6875rem] text-muted">{flow.badge}</span>
+  </figcaption>
+
+  <ol class="relative space-y-1">
+    <span class="flow-rail" aria-hidden="true"><span class="flow-pulse"></span></span>
+    {
+      flow.rows.map((row, i) => (
+        <li class="flow-row relative grid grid-cols-[1.5rem_1fr_auto] items-center gap-3 rounded-xl px-2 py-3" data-i={i} style={`--i:${i}`}>
+          <span class="flow-dot relative z-10 mx-auto size-3 rounded-full border-2 border-line-strong bg-surface" />
+          <span class="min-w-0">
+            <span class="block font-semibold">{row.title}</span>
+            <span class="block truncate font-mono text-xs text-muted">{row.detail}</span>
+          </span>
+          <span class="flow-status font-mono text-xs text-muted">{row.status}</span>
+        </li>
+      ))
+    }
+  </ol>
+
+  <div class="mt-5 flex flex-wrap gap-2 border-t border-line pt-5">
+    {
+      flow.checks.map((c) => (
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-pass-soft px-2.5 py-1 font-mono text-xs text-pass-ink">
+          <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2.5 6.2 5 8.5l4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {c}
+        </span>
+      ))
+    }
+  </div>
+</figure>
+
+<style>
+  /* Cada fila se enciende 2 s en un ciclo de 8 s; el pulso baja por el riel al mismo ritmo. */
+  .flow-rail {
+    position: absolute;
+    top: 1.5rem;
+    bottom: 1.5rem;
+    left: calc(0.5rem + 0.75rem - 1px);
+    width: 2px;
+    background: var(--line);
+    overflow: hidden;
+  }
+
+  .flow-pulse {
+    position: absolute;
+    left: 0;
+    width: 2px;
+    height: 30%;
+    background: linear-gradient(to bottom, transparent, var(--pass), transparent);
+    animation: flow-pulse 8s linear infinite;
+  }
+
+  .flow-row {
+    animation: flow-row 8s infinite;
+    animation-delay: calc(var(--i) * 2s);
+  }
+
+  /* Los puntos y estados quedan encendidos hasta el final del ciclo, como un lead que avanza. */
+  .flow-dot,
+  .flow-status {
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+  }
+
+  [data-i='0'] .flow-dot {
+    animation-name: flow-dot-0;
+  }
+
+  [data-i='0'] .flow-status {
+    animation-name: flow-status-0;
+  }
+
+  [data-i='1'] .flow-dot {
+    animation-name: flow-dot-1;
+  }
+
+  [data-i='1'] .flow-status {
+    animation-name: flow-status-1;
+  }
+
+  [data-i='2'] .flow-dot {
+    animation-name: flow-dot-2;
+  }
+
+  [data-i='2'] .flow-status {
+    animation-name: flow-status-2;
+  }
+
+  [data-i='3'] .flow-dot {
+    animation-name: flow-dot-3;
+  }
+
+  [data-i='3'] .flow-status {
+    animation-name: flow-status-3;
+  }
+
+  @keyframes flow-pulse {
+    from {
+      top: -30%;
+    }
+    to {
+      top: 100%;
+    }
+  }
+
+  @keyframes flow-row {
+    0%,
+    30%,
+    100% {
+      background: transparent;
+    }
+    4%,
+    25% {
+      background: var(--pass-soft);
+    }
+  }
+
+  @keyframes flow-dot-0 {
+    0%,
+    2%,
+    97%,
+    100% {
+      background: var(--surface);
+      border-color: var(--line-strong);
+    }
+    3%,
+    95% {
+      background: var(--pass);
+      border-color: var(--pass);
+    }
+  }
+
+  @keyframes flow-status-0 {
+    0%,
+    2%,
+    97%,
+    100% {
+      color: var(--muted);
+    }
+    3%,
+    95% {
+      color: var(--pass-ink);
+    }
+  }
+
+  @keyframes flow-dot-1 {
+    0%,
+    27%,
+    97%,
+    100% {
+      background: var(--surface);
+      border-color: var(--line-strong);
+    }
+    28%,
+    95% {
+      background: var(--pass);
+      border-color: var(--pass);
+    }
+  }
+
+  @keyframes flow-status-1 {
+    0%,
+    27%,
+    97%,
+    100% {
+      color: var(--muted);
+    }
+    28%,
+    95% {
+      color: var(--pass-ink);
+    }
+  }
+
+  @keyframes flow-dot-2 {
+    0%,
+    52%,
+    97%,
+    100% {
+      background: var(--surface);
+      border-color: var(--line-strong);
+    }
+    53%,
+    95% {
+      background: var(--pass);
+      border-color: var(--pass);
+    }
+  }
+
+  @keyframes flow-status-2 {
+    0%,
+    52%,
+    97%,
+    100% {
+      color: var(--muted);
+    }
+    53%,
+    95% {
+      color: var(--pass-ink);
+    }
+  }
+
+  @keyframes flow-dot-3 {
+    0%,
+    77%,
+    97%,
+    100% {
+      background: var(--surface);
+      border-color: var(--line-strong);
+    }
+    78%,
+    95% {
+      background: var(--pass);
+      border-color: var(--pass);
+    }
+  }
+
+  @keyframes flow-status-3 {
+    0%,
+    77%,
+    97%,
+    100% {
+      color: var(--muted);
+    }
+    78%,
+    95% {
+      color: var(--pass-ink);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flow-pulse {
+      display: none;
+    }
+
+    .flow-row,
+    .flow-dot,
+    .flow-status {
+      animation: none;
+    }
+
+    .flow-dot {
+      background: var(--pass);
+      border-color: var(--pass);
+    }
+
+    .flow-status {
+      color: var(--pass-ink);
+    }
+  }
+</style>

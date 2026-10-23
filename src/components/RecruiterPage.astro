@@ -1,0 +1,35 @@
+---
+// Página para recruiters; la usan /contratar/ (español) y /en/hire/ (inglés).
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import RecruiterHero from './RecruiterHero.astro';
+import Glance from './Glance.astro';
+import Value from './Value.astro';
+import Experience from './Experience.astro';
+import Cases from './Cases.astro';
+import Stack from './Stack.astro';
+import Contact from './Contact.astro';
+import Footer from './Footer.astro';
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+}
+
+const { t } = Astro.props;
+const { contact } = t.recruiters;
+---
+
+<Base t={t} page="recruiters">
+  <Header t={t} page="recruiters" />
+  <main id="main">
+    <RecruiterHero t={t} />
+    <Glance t={t} />
+    <Value t={t} />
+    <Experience t={t} />
+    <Cases t={t} />
+    <Stack t={t} />
+    <Contact t={t} title={contact.title} text={contact.text} emailSubject={contact.emailSubject} />
+  </main>
+  <Footer t={t} />
+</Base>

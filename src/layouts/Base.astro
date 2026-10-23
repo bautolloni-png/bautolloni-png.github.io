@@ -1,0 +1,77 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+import { pathsFor, type Page } from '../i18n';
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+  page?: Page;
+}
+
+const { t, page = 'home' } = Astro.props;
+const meta = page === 'home' ? t.meta : t.recruiters.meta;
+
+// Datos estructurados de persona, para buscadores y asistentes de IA.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Bautista Tolloni',
+  jobTitle: 'CRM & Marketing Automation Specialist',
+  email: `mailto:${t.contact.email}`,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Villa Allende, Córdoba',
+    addressCountry: 'AR',
+  },
+  knowsLanguage: ['es', 'en'],
+  knowsAbout: [
+    'CRM implementation',
+    'Marketing automation',
+    'Email deliverability',
+    'SPF, DKIM and DMARC',
+    'B2B outbound',
+    'GoHighLevel',
+    'Zoho CRM',
+    'n8n',
+  ],
+  sameAs: [t.contact.linkedin.href, 'https://github.com/bautolloni-png', 'https://nesvir.com'],
+};
+
+const site = Astro.site;
+const alternates = site
+  ? Object.entries(pathsFor(page)).map(([lang, path]) => ({ lang, href: new URL(path, site).href }))
+  : [];
+---
+
+<!doctype html>
+<html lang={t.lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0c0f10" media="(prefers-color-scheme: dark)" />
+    <title>{meta.title}</title>
+    <meta name="description" content={meta.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+    <meta property="og:locale" content={t.lang === 'es' ? 'es_AR' : 'en_US'} />
+    {site && <link rel="canonical" href={new URL(Astro.url.pathname, site).href} />}
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Font cssVariable="--font-inter-tight" preload />
+    <Font cssVariable="--font-jetbrains-mono" />
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
+  </head>
+  <body class="min-h-dvh">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper"
+    >
+      {t.nav.skip}
+    </a>
+    <slot />
+  </body>
+</html>

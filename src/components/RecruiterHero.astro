@@ -1,0 +1,59 @@
+---
+import Accent from './Accent.astro';
+import type { Content } from '../i18n/es';
+
+interface Props {
+  t: Content;
+}
+
+const { t } = Astro.props;
+const r = t.recruiters;
+const mailto = `mailto:${t.contact.email}?subject=${encodeURIComponent(r.contact.emailSubject)}`;
+// El CV del idioma de la página va primero.
+const cvs = t.lang === 'es' ? [r.cvEs, r.cvEn] : [r.cvEn, r.cvEs];
+---
+
+<section class="dot-grid relative overflow-hidden border-b border-line">
+  <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-paper/0 via-paper/40 to-paper" aria-hidden="true"></div>
+
+  <div class="container-page relative py-16 md:py-24">
+    <p class="eyebrow flex flex-wrap gap-x-2.5 gap-y-1">
+      {
+        r.eyebrow.map((item, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true">·</span>}
+            <span>{item}</span>
+          </>
+        ))
+      }
+    </p>
+
+    <h1 class="mt-6 max-w-4xl text-[clamp(2.4rem,6.4vw,4.5rem)] leading-[1.03] font-bold tracking-[-0.04em] text-balance">
+      <Accent text={r.title} />
+    </h1>
+
+    <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty md:text-xl">{r.lead}</p>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      {
+        cvs.map((cv, i) => (
+          <a href={cv.href} download class:list={['btn', i === 0 ? 'btn-primary' : 'btn-ghost bg-surface']}>
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M7 1.5v8m0 0L3.8 6.3M7 9.5l3.2-3.2M2 12.5h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            {cv.label}
+          </a>
+        ))
+      }
+      <a href={mailto} class="btn btn-ghost bg-surface">{r.write}</a>
+    </div>
+
+    <p class="mt-5 inline-flex items-center gap-2 text-sm font-medium">
+      <span class="relative flex size-2.5">
+        <span class="absolute inline-flex size-full animate-ping rounded-full bg-pass opacity-60 motion-reduce:hidden"></span>
+        <span class="relative inline-flex size-2.5 rounded-full bg-pass"></span>
+      </span>
+      {t.about.card.status}
+    </p>
+  </div>
+</section>

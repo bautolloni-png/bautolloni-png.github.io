@@ -1,0 +1,161 @@
+@import "tailwindcss";
+
+/* Tokens de marca. El verde "pass" es el de un registro SPF o DKIM aprobado. */
+:root {
+  --paper: #f6f5f1;
+  --surface: #ffffff;
+  --ink: #0e1116;
+  --ink-soft: #3a414c;
+  --muted: #5f6670;
+  --line: rgb(14 17 22 / 0.1);
+  --line-strong: rgb(14 17 22 / 0.2);
+  --pass: #157a3c;
+  --pass-soft: #e2f3e7;
+  --pass-ink: #0d5a2b;
+  --grid-dot: rgb(14 17 22 / 0.09);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #0c0f10;
+    --surface: #141819;
+    --ink: #eef1ef;
+    --ink-soft: #c3c9c6;
+    --muted: #8d9692;
+    --line: rgb(255 255 255 / 0.09);
+    --line-strong: rgb(255 255 255 / 0.18);
+    --pass: #4ade80;
+    --pass-soft: rgb(74 222 128 / 0.12);
+    --pass-ink: #86efac;
+    --grid-dot: rgb(255 255 255 / 0.07);
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-pass: var(--pass);
+  --color-pass-soft: var(--pass-soft);
+  --color-pass-ink: var(--pass-ink);
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: var(--pass-soft);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--pass);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+}
+
+@layer components {
+  .container-page {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-page {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    height: 2.75rem;
+    padding-inline: 1.25rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: transform 150ms, background-color 150ms, border-color 150ms;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--ink) 85%, var(--pass));
+  }
+
+  .btn-ghost {
+    border: 1px solid var(--line-strong);
+    color: var(--ink);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--ink);
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    height: 1.75rem;
+    padding-inline: 0.625rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    background: var(--surface);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1.25rem;
+  }
+
+  .dot-grid {
+    background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+
+  .accent {
+    color: var(--pass);
+  }
+}
