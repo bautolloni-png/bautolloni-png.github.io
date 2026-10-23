@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* Identidad de nesvir.com: tinta azul noche, azul fuerte para el acento y las acciones,
-   celeste claro para fondos suaves y Geist en todo. El modo oscuro usa el azul noche de Nesvir. */
+   celeste claro para fondos suaves y Geist en todo. Solo modo claro, como nesvir.com. */
 :root {
   --paper: #ffffff;
   --surface: #ffffff;
@@ -20,28 +20,6 @@
   --grid-dot: rgb(11 16 48 / 0.08);
   --night: #02031a;
   color-scheme: light;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #02031a;
-    --surface: #090c2c;
-    --mist: #090c2c;
-    --ink: #eef3fb;
-    --ink-soft: #b9c3dc;
-    --muted: #8c97b5;
-    --line: rgb(183 230 252 / 0.12);
-    --line-strong: rgb(183 230 252 / 0.24);
-    --brand: #5198d5;
-    --brand-hover: #6aa9de;
-    --brand-soft: rgb(81 152 213 / 0.14);
-    --brand-ink: #b7e6fc;
-    --on-brand: #02031a;
-    --glow: rgb(81 152 213 / 0.22);
-    --grid-dot: rgb(255 255 255 / 0.06);
-    --night: #010212;
-    color-scheme: dark;
-  }
 }
 
 @theme inline {

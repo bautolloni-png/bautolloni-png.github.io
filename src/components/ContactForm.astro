@@ -11,7 +11,7 @@ const { t, motive } = Astro.props;
 const f = t.contact.form;
 const field = 'mt-2 block w-full rounded-xl border border-line-strong bg-paper px-4 py-3 text-base text-ink placeholder:text-muted transition-colors focus:border-brand focus:outline-none aria-invalid:border-red-500';
 const label = 'block text-sm font-semibold';
-const error = 'field-error mt-1.5 hidden text-sm text-red-600 dark:text-red-400';
+const error = 'field-error mt-1.5 hidden text-sm text-red-600';
 // Lo que el script necesita y no está en el HTML: asuntos, mensaje de falla y página de origen.
 const config = { subject: f.subject, sendError: f.errors.send, sending: f.sending, page: Astro.url.pathname };
 ---
@@ -60,7 +60,7 @@ const config = { subject: f.subject, sendError: f.errors.send, sending: f.sendin
     <!-- Trampa para bots: una persona no la ve ni la marca. -->
     <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" class="hidden" />
 
-    <p class="send-error hidden rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-700 dark:text-red-300" role="alert" tabindex="-1"></p>
+    <p class="send-error hidden rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3 text-sm text-red-700" role="alert" tabindex="-1"></p>
 
     <div class="flex flex-wrap items-center justify-between gap-4 pt-1">
       <p class="text-sm text-muted">{f.privacy}</p>
