@@ -1,0 +1,222 @@
+<!doctype html>
+<!-- Imagen para la sección Destacados de LinkedIn (1200×627). Se genera con scripts/linkedin/generar.sh. -->
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      @font-face {
+        font-family: 'Geist';
+        src: url('../og/geist.woff2') format('woff2');
+        font-weight: 100 900;
+      }
+      @font-face {
+        font-family: 'Geist Mono';
+        src: url('../og/geist-mono.woff2') format('woff2');
+        font-weight: 400 500;
+      }
+
+      :root {
+        --ink: #0b1030;
+        --ink-soft: #4a5373;
+        --muted: #5d6685;
+        --line: #e3e9f2;
+        --brand: #1d63b0;
+        --brand-soft: #e8f5fe;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html,
+      body {
+        width: 1200px;
+        height: 627px;
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+        background-color: #ffffff;
+        background-image: radial-gradient(55% 70% at 20% 0%, rgb(183 230 252 / 0.6), transparent 70%),
+          radial-gradient(rgb(11 16 48 / 0.08) 1.2px, transparent 1.2px);
+        background-size: auto, 24px 24px;
+        color: var(--ink);
+        font-family: 'Geist', sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .texto {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 72px;
+        width: 440px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .tag {
+        align-self: flex-start;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border: 1px solid rgb(29 99 176 / 0.18);
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand);
+        font-size: 17px;
+        font-weight: 500;
+      }
+
+      .tag::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--brand);
+      }
+
+      h1 {
+        margin-top: 24px;
+        font-size: 60px;
+        line-height: 1.04;
+        font-weight: 600;
+        letter-spacing: -0.045em;
+      }
+
+      .accent {
+        color: var(--brand);
+      }
+
+      .lead {
+        margin-top: 20px;
+        font-size: 23px;
+        line-height: 1.4;
+        color: var(--ink-soft);
+      }
+
+      .firma {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 36px;
+      }
+
+      .mark {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 13px;
+        background: var(--ink);
+        color: #ffffff;
+        font-size: 21px;
+        font-weight: 600;
+        letter-spacing: -0.04em;
+      }
+
+      .mark::after {
+        content: '';
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #5198d5;
+      }
+
+      .nombre {
+        font-size: 23px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .url {
+        margin-top: 2px;
+        font-family: 'Geist Mono', monospace;
+        font-size: 16px;
+        color: var(--brand);
+      }
+
+      /* Ventana del navegador con la captura real de la web; se corta por la derecha y por abajo. */
+      .ventana {
+        position: absolute;
+        top: 86px;
+        left: 568px;
+        width: 760px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: #ffffff;
+        box-shadow: 0 40px 80px -24px rgb(11 16 48 / 0.28);
+        overflow: hidden;
+      }
+
+      .barra {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        height: 44px;
+        padding-inline: 16px;
+        border-bottom: 1px solid var(--line);
+        background: #f4f7fb;
+      }
+
+      .puntos {
+        display: flex;
+        gap: 7px;
+      }
+
+      .puntos span {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #cdd6e4;
+      }
+
+      .direccion {
+        flex: 1;
+        max-width: 360px;
+        padding: 6px 14px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #ffffff;
+        font-family: 'Geist Mono', monospace;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .ventana img {
+        display: block;
+        width: 760px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="texto">
+      <p class="tag">Mi web</p>
+      <h1>Prospección <span class="accent">B2B automatizada</span></h1>
+      <p class="lead">Servicios, casos, cómo trabajo y contacto.</p>
+      <div class="firma">
+        <span class="mark">BT</span>
+        <div>
+          <p class="nombre">Bautista Tolloni</p>
+          <p class="url">bautolloni-png.github.io</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ventana">
+      <div class="barra">
+        <div class="puntos"><span></span><span></span><span></span></div>
+        <div class="direccion">bautolloni-png.github.io</div>
+      </div>
+      <img src="captura-web.png" alt="" />
+    </div>
+  </body>
+</html>
