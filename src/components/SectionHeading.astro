@@ -13,7 +13,7 @@ const { eyebrow, title, intro, center = false } = Astro.props;
 
 <div class:list={['max-w-3xl', center && 'mx-auto text-center']}>
   <p class="eyebrow">{eyebrow}</p>
-  <h2 class="mt-4 text-[clamp(2rem,4.6vw,3.25rem)] leading-[1.05] font-bold tracking-[-0.03em] text-balance">
+  <h2 class="mt-4 text-[clamp(2rem,4.6vw,3.25rem)] leading-[1.05] font-semibold tracking-[-0.03em] text-balance">
     <Accent text={title} />
   </h2>
   {intro && <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">{intro}</p>}

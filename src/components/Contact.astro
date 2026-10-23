@@ -19,16 +19,16 @@ const text = Astro.props.text ?? contact.text;
 const mailto = `mailto:${contact.email}?subject=${encodeURIComponent(Astro.props.emailSubject ?? contact.emailSubject)}`;
 ---
 
-<section id={t.ids.contact} class="dot-grid relative py-24 md:py-32">
+<section id={t.ids.contact} class="dot-grid relative bg-mist py-24 md:py-32">
   <div class="container-page grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
     <div>
       <SectionHeading eyebrow={contact.eyebrow} title={title} intro={text} />
 
       <p class="mt-10 text-ink-soft">{contact.orEmail}</p>
       <div class="mt-4 flex flex-wrap gap-3">
-        <a href={mailto} class="btn btn-ghost bg-surface">{contact.emailLabel}</a>
-        <a href={contact.linkedin.href} target="_blank" rel="noopener" class="btn btn-ghost bg-surface">{contact.linkedin.label}</a>
-        <a href={t.hero.cv.href} download class="btn btn-ghost bg-surface">{contact.cvLabel}</a>
+        <a href={mailto} class="btn btn-ghost">{contact.emailLabel}</a>
+        <a href={contact.linkedin.href} target="_blank" rel="noopener" class="btn btn-ghost">{contact.linkedin.label}</a>
+        <a href={t.hero.cv.href} download class="btn btn-ghost">{contact.cvLabel}</a>
       </div>
 
       <p class="mt-8 font-mono text-xs leading-relaxed text-muted">

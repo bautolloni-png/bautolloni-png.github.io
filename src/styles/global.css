@@ -1,34 +1,45 @@
 @import "tailwindcss";
 
-/* Tokens de marca. El verde "pass" es el de un registro SPF o DKIM aprobado. */
+/* Identidad de nesvir.com: tinta azul noche, azul fuerte para el acento y las acciones,
+   celeste claro para fondos suaves y Geist en todo. El modo oscuro usa el azul noche de Nesvir. */
 :root {
-  --paper: #f6f5f1;
+  --paper: #ffffff;
   --surface: #ffffff;
-  --ink: #0e1116;
-  --ink-soft: #3a414c;
-  --muted: #5f6670;
-  --line: rgb(14 17 22 / 0.1);
-  --line-strong: rgb(14 17 22 / 0.2);
-  --pass: #157a3c;
-  --pass-soft: #e2f3e7;
-  --pass-ink: #0d5a2b;
-  --grid-dot: rgb(14 17 22 / 0.09);
+  --mist: #f4f7fb;
+  --ink: #0b1030;
+  --ink-soft: #4a5373;
+  --muted: #5d6685;
+  --line: #e3e9f2;
+  --line-strong: #cdd6e4;
+  --brand: #1d63b0;
+  --brand-hover: #17508f;
+  --brand-soft: #e8f5fe;
+  --brand-ink: #1d63b0;
+  --on-brand: #ffffff;
+  --glow: rgb(183 230 252 / 0.55);
+  --grid-dot: rgb(11 16 48 / 0.08);
+  --night: #02031a;
   color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --paper: #0c0f10;
-    --surface: #141819;
-    --ink: #eef1ef;
-    --ink-soft: #c3c9c6;
-    --muted: #8d9692;
-    --line: rgb(255 255 255 / 0.09);
-    --line-strong: rgb(255 255 255 / 0.18);
-    --pass: #4ade80;
-    --pass-soft: rgb(74 222 128 / 0.12);
-    --pass-ink: #86efac;
-    --grid-dot: rgb(255 255 255 / 0.07);
+    --paper: #02031a;
+    --surface: #090c2c;
+    --mist: #090c2c;
+    --ink: #eef3fb;
+    --ink-soft: #b9c3dc;
+    --muted: #8c97b5;
+    --line: rgb(183 230 252 / 0.12);
+    --line-strong: rgb(183 230 252 / 0.24);
+    --brand: #5198d5;
+    --brand-hover: #6aa9de;
+    --brand-soft: rgb(81 152 213 / 0.14);
+    --brand-ink: #b7e6fc;
+    --on-brand: #02031a;
+    --glow: rgb(81 152 213 / 0.22);
+    --grid-dot: rgb(255 255 255 / 0.06);
+    --night: #010212;
     color-scheme: dark;
   }
 }
@@ -36,16 +47,19 @@
 @theme inline {
   --color-paper: var(--paper);
   --color-surface: var(--surface);
+  --color-mist: var(--mist);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
-  --color-pass: var(--pass);
-  --color-pass-soft: var(--pass-soft);
-  --color-pass-ink: var(--pass-ink);
-  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, monospace;
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-ink: var(--brand-ink);
+  --color-on-brand: var(--on-brand);
+  --color-night: var(--night);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 @layer base {
@@ -63,12 +77,12 @@
   }
 
   ::selection {
-    background: var(--pass-soft);
+    background: var(--brand-soft);
     color: var(--ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--pass);
+    outline: 2px solid var(--brand);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -89,11 +103,33 @@
   }
 
   .eyebrow {
-    font-family: var(--font-mono);
     font-size: 0.75rem;
-    letter-spacing: 0.12em;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--brand-ink);
+  }
+
+  /* La etiqueta con punto que nesvir.com usa arriba del titular. */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 0.875rem;
+    border: 1px solid color-mix(in srgb, var(--brand) 18%, transparent);
+    border-radius: 999px;
+    background: var(--brand-soft);
+    color: var(--brand-ink);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .tag::before {
+    content: '';
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 50%;
+    background: var(--brand);
   }
 
   .btn {
@@ -103,7 +139,7 @@
     gap: 0.5rem;
     height: 2.75rem;
     padding-inline: 1.25rem;
-    border-radius: 999px;
+    border-radius: 0.5rem;
     font-weight: 600;
     font-size: 0.9375rem;
     transition: transform 150ms, background-color 150ms, border-color 150ms;
@@ -114,21 +150,23 @@
   }
 
   .btn-primary {
-    background: var(--ink);
-    color: var(--paper);
+    background: var(--brand);
+    color: var(--on-brand);
+    box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--brand) 55%, transparent);
   }
 
   .btn-primary:hover {
-    background: color-mix(in srgb, var(--ink) 85%, var(--pass));
+    background: var(--brand-hover);
   }
 
   .btn-ghost {
     border: 1px solid var(--line-strong);
+    background: var(--surface);
     color: var(--ink);
   }
 
   .btn-ghost:hover {
-    border-color: var(--ink);
+    border-color: var(--brand);
   }
 
   .chip {
@@ -137,25 +175,31 @@
     height: 1.75rem;
     padding-inline: 0.625rem;
     border: 1px solid var(--line);
-    border-radius: 999px;
+    border-radius: 0.375rem;
     font-family: var(--font-mono);
     font-size: 0.75rem;
     color: var(--ink-soft);
-    background: var(--surface);
+    background: var(--mist);
   }
 
   .card {
     background: var(--surface);
     border: 1px solid var(--line);
-    border-radius: 1.25rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 2px rgb(11 16 48 / 0.04);
   }
 
   .dot-grid {
     background-image: radial-gradient(var(--grid-dot) 1px, transparent 1px);
-    background-size: 22px 22px;
+    background-size: 24px 24px;
+  }
+
+  /* El halo celeste del héroe de nesvir.com. */
+  .glow {
+    background-image: radial-gradient(60% 55% at 50% 0%, var(--glow), transparent 70%);
   }
 
   .accent {
-    color: var(--pass);
+    color: var(--brand);
   }
 }

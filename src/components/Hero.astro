@@ -12,22 +12,14 @@ const { hero } = t;
 ---
 
 <section class="dot-grid relative overflow-hidden border-b border-line">
-  <div class="pointer-events-none absolute inset-0 bg-linear-to-b from-paper/0 via-paper/40 to-paper" aria-hidden="true"></div>
+  <div class="glow pointer-events-none absolute inset-0" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-b from-paper/0 to-paper" aria-hidden="true"></div>
 
   <div class="container-page relative grid items-center gap-12 py-16 md:py-24 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
     <div>
-      <p class="eyebrow flex flex-wrap gap-x-2.5 gap-y-1">
-        {
-          hero.eyebrow.map((item, i) => (
-            <>
-              {i > 0 && <span aria-hidden="true">·</span>}
-              <span>{item}</span>
-            </>
-          ))
-        }
-      </p>
+      <p class="tag">{hero.eyebrow.join(' · ')}</p>
 
-      <h1 class="mt-6 text-[clamp(2.6rem,7.2vw,5rem)] leading-[1.02] font-bold tracking-[-0.04em]">
+      <h1 class="mt-6 text-[clamp(2.6rem,7.2vw,5rem)] leading-[1.02] font-semibold tracking-[-0.045em]">
         <span class="sr-only">{hero.srTitle}</span>
         <span aria-hidden="true" class="rotator block min-h-[2.04em] text-balance" data-phrases={JSON.stringify(hero.phrases)}>
           <Accent text={hero.phrases[0]} />
@@ -68,7 +60,7 @@ const { hero } = t;
   const el = document.querySelector<HTMLElement>('.rotator');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (el && !reduce) {
+  if (el && !reduce && JSON.parse(el.dataset.phrases ?? '[]').length > 1) {
     const phrases: string[] = JSON.parse(el.dataset.phrases ?? '[]');
     let index = 0;
 

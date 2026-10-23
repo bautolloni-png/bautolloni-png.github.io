@@ -23,14 +23,14 @@ const links = [
 
 <header class="sticky top-0 z-40 border-b border-line bg-paper/80 backdrop-blur-md">
   <div class="container-page flex h-16 items-center justify-between gap-4">
-    <a href={home} class="font-bold whitespace-nowrap tracking-[-0.02em]">Bautista Tolloni</a>
+    <a href={home} class="font-semibold whitespace-nowrap tracking-[-0.02em]">Bautista Tolloni</a>
 
     <nav aria-label={t.nav.menu} class="hidden md:block">
-      <ul class="flex items-center gap-1 rounded-full border border-line bg-surface/70 p-1">
+      <ul class="flex items-center gap-7">
         {
           links.map((l) => (
             <li>
-              <a href={l.href} class="block rounded-full px-3.5 py-1.5 text-sm text-ink-soft transition-colors hover:bg-paper hover:text-ink">
+              <a href={l.href} class="block py-1.5 text-sm text-ink-soft transition-colors hover:text-brand">
                 {l.label}
               </a>
             </li>
@@ -62,7 +62,7 @@ const links = [
             {
               links.map((l) => (
                 <li>
-                  <a href={l.href} class="block rounded-lg px-3 py-2.5 text-ink-soft hover:bg-paper hover:text-ink">
+                  <a href={l.href} class="block rounded-lg px-3 py-2.5 text-ink-soft hover:bg-mist hover:text-ink">
                     {l.label}
                   </a>
                 </li>

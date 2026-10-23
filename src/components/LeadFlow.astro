@@ -34,7 +34,7 @@ const { flow } = Astro.props;
   <div class="mt-5 flex flex-wrap gap-2 border-t border-line pt-5">
     {
       flow.checks.map((c) => (
-        <span class="inline-flex items-center gap-1.5 rounded-full bg-pass-soft px-2.5 py-1 font-mono text-xs text-pass-ink">
+        <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-soft px-2.5 py-1 font-mono text-xs text-brand-ink">
           <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none">
             <path d="M2.5 6.2 5 8.5l4.5-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -62,7 +62,7 @@ const { flow } = Astro.props;
     left: 0;
     width: 2px;
     height: 30%;
-    background: linear-gradient(to bottom, transparent, var(--pass), transparent);
+    background: linear-gradient(to bottom, transparent, var(--brand), transparent);
     animation: flow-pulse 8s linear infinite;
   }
 
@@ -127,7 +127,7 @@ const { flow } = Astro.props;
     }
     4%,
     25% {
-      background: var(--pass-soft);
+      background: var(--brand-soft);
     }
   }
 
@@ -141,8 +141,8 @@ const { flow } = Astro.props;
     }
     3%,
     95% {
-      background: var(--pass);
-      border-color: var(--pass);
+      background: var(--brand);
+      border-color: var(--brand);
     }
   }
 
@@ -155,7 +155,7 @@ const { flow } = Astro.props;
     }
     3%,
     95% {
-      color: var(--pass-ink);
+      color: var(--brand-ink);
     }
   }
 
@@ -169,8 +169,8 @@ const { flow } = Astro.props;
     }
     28%,
     95% {
-      background: var(--pass);
-      border-color: var(--pass);
+      background: var(--brand);
+      border-color: var(--brand);
     }
   }
 
@@ -183,7 +183,7 @@ const { flow } = Astro.props;
     }
     28%,
     95% {
-      color: var(--pass-ink);
+      color: var(--brand-ink);
     }
   }
 
@@ -197,8 +197,8 @@ const { flow } = Astro.props;
     }
     53%,
     95% {
-      background: var(--pass);
-      border-color: var(--pass);
+      background: var(--brand);
+      border-color: var(--brand);
     }
   }
 
@@ -211,7 +211,7 @@ const { flow } = Astro.props;
     }
     53%,
     95% {
-      color: var(--pass-ink);
+      color: var(--brand-ink);
     }
   }
 
@@ -225,8 +225,8 @@ const { flow } = Astro.props;
     }
     78%,
     95% {
-      background: var(--pass);
-      border-color: var(--pass);
+      background: var(--brand);
+      border-color: var(--brand);
     }
   }
 
@@ -239,7 +239,7 @@ const { flow } = Astro.props;
     }
     78%,
     95% {
-      color: var(--pass-ink);
+      color: var(--brand-ink);
     }
   }
 
@@ -255,12 +255,12 @@ const { flow } = Astro.props;
     }
 
     .flow-dot {
-      background: var(--pass);
-      border-color: var(--pass);
+      background: var(--brand);
+      border-color: var(--brand);
     }
 
     .flow-status {
-      color: var(--pass-ink);
+      color: var(--brand-ink);
     }
   }
 </style>

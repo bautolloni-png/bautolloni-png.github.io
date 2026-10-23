@@ -10,7 +10,7 @@ const { t } = Astro.props;
 const { stack } = t;
 
 const marker: Record<string, string> = {
-  pass: 'bg-pass',
+  pass: 'bg-brand',
   muted: 'bg-muted',
   outline: 'border-2 border-muted',
 };
@@ -24,7 +24,7 @@ const marker: Record<string, string> = {
       {
         stack.levels.map((level, i) => (
           <div class:list={['card p-6 sm:p-8', i === 0 && 'lg:row-span-2']}>
-            <h3 class="flex items-center gap-2.5 text-xl font-bold">
+            <h3 class="flex items-center gap-2.5 text-xl font-semibold">
               <span class:list={['inline-block size-2.5 rounded-full', marker[level.tone]]} aria-hidden="true" />
               {level.name}
             </h3>

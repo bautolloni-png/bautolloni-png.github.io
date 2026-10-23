@@ -26,6 +26,9 @@ const person = {
   },
   knowsLanguage: ['es', 'en'],
   knowsAbout: [
+    'B2B outbound automation',
+    'Cold email',
+    'Lead generation',
     'CRM implementation',
     'Marketing automation',
     'Email deliverability',
@@ -50,8 +53,8 @@ const alternates = site
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f6f5f1" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0c0f10" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#02031a" media="(prefers-color-scheme: dark)" />
     <title>{meta.title}</title>
     <meta name="description" content={meta.description} />
     <meta property="og:type" content="website" />
@@ -74,8 +77,8 @@ const alternates = site
     }
     {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <Font cssVariable="--font-inter-tight" preload />
-    <Font cssVariable="--font-jetbrains-mono" />
+    <Font cssVariable="--font-geist" preload />
+    <Font cssVariable="--font-geist-mono" />
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
   </head>
   <body class="min-h-dvh">

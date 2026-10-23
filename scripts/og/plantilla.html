@@ -5,26 +5,26 @@
     <meta charset="utf-8" />
     <style>
       @font-face {
-        font-family: 'Inter Tight';
-        src: url('inter-tight.woff2') format('woff2');
+        font-family: 'Geist';
+        src: url('geist.woff2') format('woff2');
         font-weight: 100 900;
       }
       @font-face {
-        font-family: 'JetBrains Mono';
-        src: url('jetbrains-mono.woff2') format('woff2');
+        font-family: 'Geist Mono';
+        src: url('geist-mono.woff2') format('woff2');
         font-weight: 400 500;
       }
 
       :root {
-        --paper: #f6f5f1;
+        --paper: #ffffff;
         --surface: #ffffff;
-        --ink: #0e1116;
-        --ink-soft: #3a414c;
-        --muted: #5f6670;
-        --line: rgb(14 17 22 / 0.1);
-        --pass: #157a3c;
-        --pass-soft: #e2f3e7;
-        --pass-ink: #0d5a2b;
+        --ink: #0b1030;
+        --ink-soft: #4a5373;
+        --muted: #5d6685;
+        --line: #e3e9f2;
+        --pass: #1d63b0;
+        --pass-soft: #e8f5fe;
+        --pass-ink: #1d63b0;
       }
 
       * {
@@ -47,30 +47,45 @@
         align-items: center;
         padding: 64px 72px;
         background-color: var(--paper);
-        background-image: radial-gradient(rgb(14 17 22 / 0.09) 1.2px, transparent 1.2px);
-        background-size: 24px 24px;
+        background-image: radial-gradient(60% 70% at 30% 0%, rgb(183 230 252 / 0.6), transparent 70%),
+          radial-gradient(rgb(11 16 48 / 0.08) 1.2px, transparent 1.2px);
+        background-size: auto, 24px 24px;
         color: var(--ink);
-        font-family: 'Inter Tight', sans-serif;
+        font-family: 'Geist', sans-serif;
         -webkit-font-smoothing: antialiased;
       }
 
       .mono {
-        font-family: 'JetBrains Mono', monospace;
+        font-family: 'Geist Mono', monospace;
       }
 
       .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        border: 1px solid rgb(29 99 176 / 0.18);
+        border-radius: 999px;
+        background: var(--pass-soft);
+        color: var(--pass-ink);
         font-size: 17px;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--muted);
+        font-weight: 500;
+      }
+
+      .eyebrow::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--pass);
       }
 
       h1 {
         margin-top: 26px;
-        font-size: 82px;
+        font-size: 66px;
         line-height: 1.02;
-        font-weight: 700;
-        letter-spacing: -0.045em;
+        font-weight: 600;
+        letter-spacing: -0.05em;
       }
 
       .accent {
@@ -100,9 +115,9 @@
         height: 56px;
         border-radius: 14px;
         background: var(--ink);
-        color: var(--paper);
+        color: #ffffff;
         font-size: 23px;
-        font-weight: 700;
+        font-weight: 600;
         letter-spacing: -0.04em;
       }
 
@@ -114,7 +129,7 @@
         width: 9px;
         height: 9px;
         border-radius: 50%;
-        background: #4ade80;
+        background: #5198d5;
       }
 
       .name {
@@ -215,7 +230,7 @@
   </head>
   <body>
     <div>
-      <p class="eyebrow mono" data-t="eyebrow"></p>
+      <p class="eyebrow" data-t="eyebrow"></p>
       <h1 data-t="title"></h1>
       <p class="lead" data-t="lead"></p>
       <div class="sign">
@@ -240,27 +255,27 @@
     <script>
       const textos = {
         es: {
-          eyebrow: 'CRM · Automatización · Email B2B',
-          title: 'Leads que no se <span class="accent">pierden.</span>',
-          lead: 'Implemento CRM, automatizaciones y la infraestructura de email para que cada correo llegue a la bandeja de entrada.',
-          cardLabel: 'El recorrido de un lead',
+          eyebrow: 'Prospección B2B automatizada',
+          title: 'Automatizo la <span class="accent">prospección B2B</span> de tu empresa.',
+          lead: 'Lista de prospectos, correos personalizados, dominios de envío y respuestas conectadas a tu CRM.',
+          cardLabel: 'Así funciona tu outbound',
           rows: [
-            ['Formulario web', 'lead.nuevo · origen: Meta Ads', 'recibido'],
-            ['CRM', 'etapa: Nuevo → Contactado', 'asignado'],
-            ['Secuencia', 'paso 2 de 3 · asunto B', 'enviado'],
+            ['Lista de prospectos', 'Sales Navigator', 'segmentada'],
+            ['Correo personalizado', 'n8n + IA · revisada', 'aprobado'],
             ['Bandeja de entrada', 'dominio autenticado', 'entregado'],
+            ['Respuesta → CRM', 'Respondió → Reunión', 'asignada'],
           ],
         },
         en: {
-          eyebrow: 'CRM · Automation · B2B Email',
-          title: 'Leads that don’t get <span class="accent">lost.</span>',
-          lead: 'I implement CRMs, automations and email infrastructure so every email lands in the inbox.',
-          cardLabel: 'A lead’s journey',
+          eyebrow: 'Automated B2B outbound',
+          title: 'I automate your company’s <span class="accent">B2B outbound.</span>',
+          lead: 'Prospect lists, personalised emails, sending domains and replies connected to your CRM.',
+          cardLabel: 'How your outbound works',
           rows: [
-            ['Web form', 'lead.new · source: Meta Ads', 'received'],
-            ['CRM', 'stage: New → Contacted', 'assigned'],
-            ['Sequence', 'step 2 of 3 · subject B', 'sent'],
+            ['Prospect list', 'Sales Navigator', 'segmented'],
+            ['Personalised email', 'n8n + AI · reviewed', 'approved'],
             ['Inbox', 'authenticated domain', 'delivered'],
+            ['Reply → CRM', 'Replied → Meeting', 'assigned'],
           ],
         },
       };
