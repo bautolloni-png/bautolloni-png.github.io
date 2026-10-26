@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { t } = Astro.props;
-const { glance, roles } = t.recruiters;
+const { glance, roles, learning } = t.recruiters;
 ---
 
 <section class="border-b border-line py-20 md:py-28">
@@ -30,6 +30,14 @@ const { glance, roles } = t.recruiters;
       <p class="eyebrow">{roles.label}</p>
       <ul class="mt-4 flex flex-wrap gap-2">
         {roles.items.map((role) => <li class="chip h-9 px-3.5 text-sm">{role}</li>)}
+      </ul>
+    </div>
+    <p class="mt-4 text-sm text-muted">{roles.note}</p>
+
+    <div class="mt-10">
+      <p class="eyebrow">{learning.label}</p>
+      <ul class="mt-4 flex flex-wrap gap-2">
+        {learning.items.map((item) => <li class="chip h-9 border-dashed px-3.5 text-sm">{item}</li>)}
       </ul>
     </div>
   </div>

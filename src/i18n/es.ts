@@ -245,7 +245,7 @@ export const es = {
       {
         name: 'Aprendiendo',
         tone: 'outline',
-        groups: [{ name: '', tools: ['SQL'] }],
+        groups: [{ name: '', tools: ['SQL', 'HubSpot en la práctica', 'Make', 'Zapier', 'Salesforce Admin'] }],
       },
     ],
   },
@@ -295,13 +295,13 @@ export const es = {
   paths: { home: '/', recruiters: '/contratar/' },
   recruiters: {
     meta: {
-      title: 'Contratar a Bautista Tolloni | CRM & Marketing Automation Specialist',
+      title: 'Contratar a Bautista Tolloni | CRM, Marketing Automation y automatización GTM',
       description:
-        'CRM & Marketing Automation Specialist con disponibilidad inmediata, remoto desde Argentina (GMT−3). Implementación de CRM, automatizaciones, email marketing y entregabilidad. CV en español e inglés.',
+        'CRM & Marketing Automation Specialist con disponibilidad inmediata, remoto desde Argentina (GMT−3). Implementación de CRM, automatizaciones con n8n e IA, email marketing y entregabilidad. CV en español e inglés.',
     },
     eyebrow: ['Para recruiters', 'Córdoba, AR', 'GMT−3'],
     title: 'CRM & Marketing Automation |Specialist.',
-    lead: 'Automatizo la prospección B2B, implemento y administro CRMs y cuido que el email llegue a la bandeja de entrada. Busco un puesto remoto, en relación de dependencia o por contrato.',
+    lead: 'Implemento y administro CRMs, construyo automatizaciones con n8n y la API de Claude, y cuido que el email llegue a la bandeja de entrada. Busco un puesto remoto, en relación de dependencia o por contrato, con procesos en español o en inglés.',
     cvEs: { label: 'CV en español', href: '/cv/Bautista_Tolloni_CV_ES.pdf' },
     cvEn: { label: 'CV in English', href: '/cv/Bautista_Tolloni_CV_EN.pdf' },
     write: 'Escribirme',
@@ -320,12 +320,18 @@ export const es = {
     roles: {
       label: 'Puestos que busco',
       items: [
-        'Outbound / Outreach B2B',
         'Marketing Automation Specialist',
         'CRM Specialist',
-        'Email Marketing y Lifecycle',
         'Marketing Operations',
+        'Revenue Operations (RevOps)',
+        'Automatización GTM (n8n, Clay, IA)',
+        'Email Marketing y Lifecycle',
       ],
+      note: 'Puestos de sistemas y automatización. No busco puestos de SDR ni de llamadas en frío.',
+    },
+    learning: {
+      label: 'En qué me estoy formando',
+      items: ['SQL, con los datos de mi propio SaaS', 'HubSpot en la práctica', 'Make y Zapier', 'Salesforce Administrator', 'Inglés oral hacia C1'],
     },
     value: {
       eyebrow: 'Qué aporto',
@@ -336,8 +342,8 @@ export const es = {
           text: 'Armé listas, busqué correos, escribí secuencias, configuré dominios y conecté las respuestas al CRM, todo en proyectos reales.',
         },
         {
-          title: 'Varios stacks a la vez',
-          text: 'Dos años en una agencia llevando varias cuentas en paralelo, cada una con su CRM, su dominio y su customer journey.',
+          title: 'CRM desde cero, en varias cuentas',
+          text: 'Implementé GoHighLevel, Zoho CRM y Bitrix24 desde cero para varias cuentas en paralelo: pipelines, formularios, workflows y enrutamiento de leads.',
         },
         {
           title: 'Entregabilidad',
@@ -351,7 +357,7 @@ export const es = {
     },
     contact: {
       title: 'Escríbeme.',
-      text: 'Escríbeme con el enlace del puesto. Tengo disponibilidad inmediata.',
+      text: 'Escríbeme con el enlace del puesto, en español o en inglés. Tengo disponibilidad inmediata.',
       emailSubject: 'Vacante para Bautista Tolloni',
     },
   },

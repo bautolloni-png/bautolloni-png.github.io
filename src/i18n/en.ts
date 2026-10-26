@@ -245,7 +245,7 @@ export const en: Content = {
       {
         name: 'Learning',
         tone: 'outline',
-        groups: [{ name: '', tools: ['SQL'] }],
+        groups: [{ name: '', tools: ['SQL', 'HubSpot in practice', 'Make', 'Zapier', 'Salesforce Admin'] }],
       },
     ],
   },
@@ -296,13 +296,13 @@ export const en: Content = {
   paths: { home: '/en/', recruiters: '/en/hire/' },
   recruiters: {
     meta: {
-      title: 'Hire Bautista Tolloni | CRM & Marketing Automation Specialist',
+      title: 'Hire Bautista Tolloni | CRM, Marketing Automation & GTM Automation',
       description:
-        'CRM & Marketing Automation Specialist, available now, remote from Argentina (GMT−3). CRM implementation, automation, email marketing and deliverability. CV in English and Spanish.',
+        'CRM & Marketing Automation Specialist, available now, remote from Argentina (GMT−3). CRM implementation, automation with n8n and AI, email marketing and deliverability. CV in English and Spanish.',
     },
     eyebrow: ['For recruiters', 'Córdoba, AR', 'GMT−3'],
     title: 'CRM & Marketing Automation |Specialist.',
-    lead: 'I automate B2B outbound, implement and manage CRMs and make sure email lands in the inbox. I’m looking for a remote role, as an employee or a contractor.',
+    lead: 'I implement and manage CRMs, build automations with n8n and the Claude API, and make sure email lands in the inbox. I’m looking for a remote role, as an employee or a contractor, with hiring processes in English or Spanish.',
     cvEs: { label: 'CV en español', href: '/cv/Bautista_Tolloni_CV_ES.pdf' },
     cvEn: { label: 'CV in English', href: '/cv/Bautista_Tolloni_CV_EN.pdf' },
     write: 'Email me',
@@ -321,12 +321,18 @@ export const en: Content = {
     roles: {
       label: 'Roles I’m looking for',
       items: [
-        'B2B Outbound / Outreach',
         'Marketing Automation Specialist',
         'CRM Specialist',
-        'Email Marketing & Lifecycle',
         'Marketing Operations',
+        'Revenue Operations (RevOps)',
+        'GTM Automation (n8n, Clay, AI)',
+        'Email Marketing & Lifecycle',
       ],
+      note: 'Systems and automation roles. I’m not looking for SDR or cold-calling roles.',
+    },
+    learning: {
+      label: 'What I’m learning now',
+      items: ['SQL, on my own SaaS’s data', 'HubSpot in practice', 'Make and Zapier', 'Salesforce Administrator', 'Spoken English toward C1'],
     },
     value: {
       eyebrow: 'What I bring',
@@ -337,8 +343,8 @@ export const en: Content = {
           text: 'I’ve built lists, found emails, written sequences, configured domains and connected replies to the CRM, all on real projects.',
         },
         {
-          title: 'Several stacks at once',
-          text: 'Two years at an agency running several accounts in parallel, each with its own CRM, domain and customer journey.',
+          title: 'CRMs from scratch, across accounts',
+          text: 'I implemented GoHighLevel, Zoho CRM and Bitrix24 from scratch for several accounts in parallel: pipelines, forms, workflows and lead routing.',
         },
         {
           title: 'Deliverability',
@@ -352,7 +358,7 @@ export const en: Content = {
     },
     contact: {
       title: 'Get in touch.',
-      text: 'Send me the link to the job. I’m available right away.',
+      text: 'Send me the link to the job, in English or Spanish. I’m available right away.',
       emailSubject: 'Role for Bautista Tolloni',
     },
   },
