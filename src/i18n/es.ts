@@ -6,7 +6,7 @@ export const es = {
   meta: {
     title: 'Bautista Tolloni | Prospección B2B automatizada, CRM y entregabilidad',
     description:
-      'Automatizo la prospección B2B de tu empresa: armo la lista, escribo y personalizo los correos, configuro los dominios (SPF, DKIM, DMARC) para que lleguen a la bandeja de entrada y conecto cada respuesta a tu CRM.',
+      'Automatizo la prospección B2B de tu empresa: armo la lista, monto las secuencias, configuro los dominios (SPF, DKIM, DMARC) para que lleguen a la bandeja de entrada y conecto cada respuesta a tu CRM.',
   },
   ids: {
     about: 'sobre-mi',
@@ -31,7 +31,7 @@ export const es = {
     eyebrow: ['Prospección B2B automatizada', 'Córdoba, AR', 'Remoto'],
     srTitle: 'Bautista Tolloni: prospección B2B automatizada que llega a la bandeja de entrada.',
     phrases: ['Automatizo la |prospección B2B de tu empresa.'],
-    lead: 'Armo la lista de prospectos, escribo y personalizo los correos, configuro los dominios de envío y conecto las respuestas a tu CRM.',
+    lead: 'Armo la lista de prospectos, monto las secuencias, configuro los dominios de envío y conecto las respuestas a tu CRM.',
     primary: 'Hablemos',
     secondary: 'Ver casos',
     cv: { label: 'Descargar CV', href: '/cv/Bautista_Tolloni_CV_ES.pdf' },
@@ -55,7 +55,7 @@ export const es = {
     title: 'De atención al cliente |a la prospección B2B.',
     paragraphs: [
       'Empecé en una fintech acompañando a los usuarios en el onboarding, la activación y la reactivación, con Microsoft Dynamics 365 como herramienta de todos los días. Ahí entendí que lo que pasa detrás define la experiencia del cliente: datos limpios, etapas claras y seguimiento a tiempo.',
-      'Después pasé dos años en una agencia de marketing B2B de Barcelona, con dos cargos en paralelo. Armé y segmenté bases de prospectos, escribí y corrí secuencias de outbound, automaticé el outreach en LinkedIn y configuré más de 50 dominios de envío para que esos correos llegaran a la bandeja de entrada. Y cuando alguien respondía, el CRM que yo había implementado lo recibía.',
+      'Después pasé dos años en una agencia de marketing B2B de Barcelona, con dos cargos en paralelo. Armé y segmenté bases de prospectos, corrí secuencias de outbound, automaticé el outreach en LinkedIn y configuré más de 50 dominios de envío para que esos correos llegaran a la bandeja de entrada. Y cuando alguien respondía, el CRM que yo había implementado lo recibía.',
       'Hoy, además, construyo Nesvir, mi propio SaaS, con su propio embudo de captación, su CRM y su correo automatizado.',
     ],
     card: {
@@ -86,8 +86,8 @@ export const es = {
         tools: ['SPF', 'DKIM', 'DMARC', 'Warm-up', 'Postmaster Tools'],
       },
       {
-        title: 'Secuencias y copy',
-        text: 'Escribo los correos y los asuntos, armo secuencias de varios pasos con variantes y hago el outreach en LinkedIn. Cuando conviene, personalizo cada correo con IA y una revisión humana antes de enviarlo.',
+        title: 'Secuencias y outreach',
+        text: 'Armo secuencias de varios pasos en la herramienta de envío y hago el outreach en LinkedIn. Cuando conviene, personalizo cada correo con IA y una revisión humana antes de enviarlo.',
         tools: ['Snov.io', 'n8n', 'API de Claude', 'Linked Helper'],
       },
       {
@@ -107,7 +107,7 @@ export const es = {
       },
       {
         title: 'Montaje',
-        text: 'Preparo los dominios, armo la lista, escribo la secuencia y conecto las respuestas al CRM.',
+        text: 'Preparo los dominios, armo la lista, monto la secuencia y conecto las respuestas al CRM.',
       },
       {
         title: 'Lanzamiento y ajuste',
@@ -129,7 +129,7 @@ export const es = {
         kind: 'Outbound B2B · agencia de Barcelona',
         title: 'Prospección para varias cuentas a la vez',
         problem: 'Cuentas B2B que necesitaban conseguir clientes nuevos, cada una con su mercado, su dominio y su CRM.',
-        built: 'Bases segmentadas con Sales Navigator y Linked Helper, correos encontrados con Clay, secuencias de varios pasos en Snov.io con una variante de asunto en cada envío y outreach automatizado en LinkedIn, con seguimiento de respuestas.',
+        built: 'Bases segmentadas con Sales Navigator y Linked Helper, correos encontrados con Clay, secuencias de varios pasos en Snov.io y outreach automatizado en LinkedIn, con seguimiento de respuestas.',
         result: 'Mejor tasa de apertura con dominios bien configurados y bases más limpias, y cada respuesta registrada en el CRM del cliente.',
         tools: ['Sales Navigator', 'Linked Helper', 'Clay', 'Snov.io'],
         link: {
@@ -339,7 +339,7 @@ export const es = {
       items: [
         {
           title: 'Prospección de punta a punta',
-          text: 'Armé listas, busqué correos, escribí secuencias, configuré dominios y conecté las respuestas al CRM, todo en proyectos reales.',
+          text: 'Armé listas, busqué correos, corrí secuencias, configuré dominios y conecté las respuestas al CRM, todo en proyectos reales.',
         },
         {
           title: 'CRM desde cero, en varias cuentas',

@@ -6,7 +6,7 @@ export const en: Content = {
   meta: {
     title: 'Bautista Tolloni | Automated B2B outbound, CRM and deliverability',
     description:
-      'I automate your company’s B2B outbound: I build the list, write and personalise the emails, set up your domains (SPF, DKIM, DMARC) so they land in the inbox, and route every reply into your CRM.',
+      'I automate your company’s B2B outbound: I build the list, set up the sequences, configure your domains (SPF, DKIM, DMARC) so they land in the inbox, and route every reply into your CRM.',
   },
   ids: {
     about: 'about',
@@ -31,7 +31,7 @@ export const en: Content = {
     eyebrow: ['Automated B2B outbound', 'Córdoba, AR', 'Remote'],
     srTitle: 'Bautista Tolloni: automated B2B outbound that lands in the inbox.',
     phrases: ['I automate your company’s |B2B outbound.'],
-    lead: 'I build the prospect list, write and personalise the emails, set up the sending domains and connect replies to your CRM.',
+    lead: 'I build the prospect list, set up the sequences, configure the sending domains and connect replies to your CRM.',
     primary: "Let's talk",
     secondary: 'See the work',
     cv: { label: 'Download CV', href: '/cv/Bautista_Tolloni_CV_EN.pdf' },
@@ -55,7 +55,7 @@ export const en: Content = {
     title: 'From customer service |to B2B outbound.',
     paragraphs: [
       'I started at a fintech, guiding users through onboarding, activation and reactivation, with Microsoft Dynamics 365 as my everyday tool. That is where I learned that what happens behind the scenes shapes the customer experience: clean data, clear stages and timely follow-up.',
-      'Then I spent two years at a B2B marketing agency in Barcelona, in two parallel roles. I built and segmented prospect lists, wrote and ran outbound sequences, automated LinkedIn outreach and configured 50+ sending domains so those emails reached the inbox. And when someone replied, the CRM I had implemented picked it up.',
+      'Then I spent two years at a B2B marketing agency in Barcelona, in two parallel roles. I built and segmented prospect lists, ran outbound sequences, automated LinkedIn outreach and configured 50+ sending domains so those emails reached the inbox. And when someone replied, the CRM I had implemented picked it up.',
       'Today I also build Nesvir, my own SaaS, with its own lead funnel, CRM and automated email.',
     ],
     card: {
@@ -86,8 +86,8 @@ export const en: Content = {
         tools: ['SPF', 'DKIM', 'DMARC', 'Warm-up', 'Postmaster Tools'],
       },
       {
-        title: 'Sequences & copy',
-        text: 'I write the emails and subject lines, build multi-step sequences with variants and run LinkedIn outreach. When it makes sense, I personalise each email with AI and a human review before it goes out.',
+        title: 'Sequences & outreach',
+        text: 'I build multi-step sequences in the sending tool and run LinkedIn outreach. When it makes sense, I personalise each email with AI and a human review before it goes out.',
         tools: ['Snov.io', 'n8n', 'Claude API', 'Linked Helper'],
       },
       {
@@ -107,7 +107,7 @@ export const en: Content = {
       },
       {
         title: 'Setup',
-        text: 'I prepare the domains, build the list, write the sequence and connect replies to your CRM.',
+        text: 'I prepare the domains, build the list, set up the sequence and connect replies to your CRM.',
       },
       {
         title: 'Launch & adjust',
@@ -129,7 +129,7 @@ export const en: Content = {
         kind: 'B2B outbound · Barcelona agency',
         title: 'Outbound for several accounts at once',
         problem: 'B2B accounts that needed new clients, each with its own market, domain and CRM.',
-        built: 'Lists segmented with Sales Navigator and Linked Helper, emails found with Clay, multi-step Snov.io sequences with a subject variant on every send, and automated LinkedIn outreach with reply tracking.',
+        built: 'Lists segmented with Sales Navigator and Linked Helper, emails found with Clay, multi-step Snov.io sequences and automated LinkedIn outreach with reply tracking.',
         result: 'Better open rates thanks to well-configured domains and cleaner lists, with every reply logged in the client’s CRM.',
         tools: ['Sales Navigator', 'Linked Helper', 'Clay', 'Snov.io'],
         link: {
@@ -340,7 +340,7 @@ export const en: Content = {
       items: [
         {
           title: 'Outbound end to end',
-          text: 'I’ve built lists, found emails, written sequences, configured domains and connected replies to the CRM, all on real projects.',
+          text: 'I’ve built lists, found emails, run sequences, configured domains and connected replies to the CRM, all on real projects.',
         },
         {
           title: 'CRMs from scratch, across accounts',
